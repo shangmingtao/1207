@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
             user1.setName(redisTemplateUtil.get(id)+"");
             return user1;
         }else {
-            log.info("search in db");
+            log.info("search in db1");
             User user = userMapper.selectByPrimaryKey(Integer.valueOf(id));
             user1.setName(user.getName());
             user1.setAge(user.getAge());
