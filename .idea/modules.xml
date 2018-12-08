@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Desktop.iml" filepath="$PROJECT_DIR$/Desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-faced/jd-faced.iml" filepath="$PROJECT_DIR$/jd-faced/jd-faced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-service/jd-service.iml" filepath="$PROJECT_DIR$/jd-service/jd-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-web/jd-web.iml" filepath="$PROJECT_DIR$/jd-web/jd-web.iml" />
+    </modules>
+  </component>
+</project>
