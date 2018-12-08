@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public cn.milo.dto.User searchUser(String id) {
-        log.info("service 被访问了。。。传入参数17：   " + id);
+        log.info("service 被访问了。。。传入参数18：   " + id);
         cn.milo.dto.User user1 = new cn.milo.dto.User();
         if (redisTemplateUtil.get(id) != null){
-            log.info("redis mingzhong le 17....");
+            log.info("redis mingzhong le 18....");
             user1.setName(redisTemplateUtil.get(id)+"");
             return user1;
         }else {
