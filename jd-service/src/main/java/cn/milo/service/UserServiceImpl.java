@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         log.info("service 被访问了。。。传入参数400：   " + id);
         cn.milo.dto.User user1 = new cn.milo.dto.User();
         if (redisTemplateUtil.get(id) != null){
-            log.info("redis mingzhong le 400....");
+            log.info("redis mingzhong le 401....");
             user1.setName(redisTemplateUtil.get(id)+"");
             return user1;
         }else {
