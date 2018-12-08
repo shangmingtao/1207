@@ -40,11 +40,11 @@
       <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jd-service/src/main/java/cn/milo/service/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="41" column="12" lean-forward="true" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+            <state relative-caret-position="251">
+              <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1544292077542" expanded="false" signature="2154:2169" ph="&lt;~&gt;" />
+                <marker date="1544292435373" expanded="false" signature="2208:2223" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -1003,7 +1003,7 @@
       <workItem from="1544199462920" duration="8418000" />
       <workItem from="1544234348281" duration="25279000" />
       <workItem from="1544288309216" duration="27000" />
-      <workItem from="1544288772399" duration="3340000" />
+      <workItem from="1544288772399" duration="3681000" />
     </task>
     <task id="LOCAL-00001" summary="motify UserServiceImpl.java">
       <created>1544288865769</created>
@@ -1110,11 +1110,32 @@
       <option name="project" value="LOCAL" />
       <updated>1544292002749</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Merge remote-tracking branch 'remotes/origin/master'&#10;&#10;# Conflicts:&#10;#&#9;jd-service/src/main/java/cn/milo/service/UserServiceImpl.java">
+      <created>1544292139543</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1544292139543</updated>
+    </task>
+    <task id="LOCAL-00017" summary="302">
+      <created>1544292160273</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1544292160273</updated>
+    </task>
+    <task id="LOCAL-00018" summary="306">
+      <created>1544292377410</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1544292377410</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49455000" />
+    <option name="totallyTimeSpent" value="49796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1936" height="1056" extended-state="0" />
@@ -1215,7 +1236,10 @@
     <MESSAGE value="223" />
     <MESSAGE value="226" />
     <MESSAGE value="300" />
-    <option name="LAST_COMMIT_MESSAGE" value="300" />
+    <MESSAGE value="Merge remote-tracking branch 'remotes/origin/master'&#10;&#10;# Conflicts:&#10;#&#9;jd-service/src/main/java/cn/milo/service/UserServiceImpl.java" />
+    <MESSAGE value="302" />
+    <MESSAGE value="306" />
+    <option name="LAST_COMMIT_MESSAGE" value="306" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1625,11 +1649,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jd-service/src/main/java/cn/milo/service/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="41" column="12" lean-forward="true" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+        <state relative-caret-position="251">
+          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1544292077542" expanded="false" signature="2154:2169" ph="&lt;~&gt;" />
+            <marker date="1544292435373" expanded="false" signature="2208:2223" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
