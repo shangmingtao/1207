@@ -1,0 +1,22 @@
+Index: jd-service/src/main/java/cn/milo/service/UserServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cn.milo.service;\n\n\nimport cn.milo.domain.User;\nimport cn.milo.mapper.UserMapper;\nimport cn.milo.util.RedisTemplateUtil;\nimport org.apache.log4j.Logger;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Propagation;\nimport org.springframework.transaction.annotation.Transactional;\n\nimport java.util.HashMap;\n\n\n/******************************************************\n ****** @ClassName   : UserServiceImpl.java                                            \n ****** @author      : milo ^ ^                     \n ****** @date        : 2018 12 07 14:24     \n ****** @version     : v1.0.x                      \n *******************************************************/\n@Service(\"userFacede\")\npublic class UserServiceImpl implements UserService {\n\n    Logger log = Logger.getLogger(UserServiceImpl.class);\n\n    @Autowired\n    private UserMapper userMapper;\n\n    @Autowired\n    private RedisTemplateUtil redisTemplateUtil;\n\n    @Override\n    public cn.milo.dto.User searchUser(String id) {\n        log.info(\"service 被访问了。。。传入参数3：   \" + id);\n        cn.milo.dto.User user1 = new cn.milo.dto.User();\n        if (redisTemplateUtil.get(id) != null){\n            log.info(\"redis mingzhong le 3....\");\n            user1.setName(redisTemplateUtil.get(id)+\"\");\n            return user1;\n        }else {\n            log.info(\"search in db1\");\n            User user = userMapper.selectByPrimaryKey(Integer.valueOf(id));\n            user1.setName(user.getName());\n            user1.setAge(user.getAge());\n        }\n        return user1;\n    }\n\n    @Override\n    @Transactional(propagation = Propagation.REQUIRED , rollbackFor = Exception.class)\n    public boolean createUser(cn.milo.dto.User user) {\n        User user1 = new User();\n        user1.setId(user.getAge());\n        user1.setAge(user.getAge());\n        user1.setName(user.getName());\n        user1.setPassword(user.getName());\n        int i = userMapper.insert(user1);\n        log.info(\"插入了 。。。 \"  +i+ \" 条\");\n        log.info(\"set redis ....\");\n        HashMap<String,String> map = new HashMap<String,String>();\n        redisTemplateUtil.set(user.getAge()+\"\",user.getName());\n//        int k = 1/0;\n        return  i==1?Boolean.valueOf(true):Boolean.valueOf(false);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- jd-service/src/main/java/cn/milo/service/UserServiceImpl.java	(date 1545059065000)
++++ jd-service/src/main/java/cn/milo/service/UserServiceImpl.java	(revision )
+@@ -32,7 +32,12 @@
+ 
+     @Override
+     public cn.milo.dto.User searchUser(String id) {
++<<<<<<< HEAD
+         log.info("service 被访问了。。。传入参数3：   " + id);
++=======
++        log.info("service 被访问了。。。传入参数1：   " + id);
++        log.info("service 被访问了。。。传入参数1：   " + id);
++>>>>>>> 6808d169032876e7f9e622c11aa1d4b03bf0282c
+         cn.milo.dto.User user1 = new cn.milo.dto.User();
+         if (redisTemplateUtil.get(id) != null){
+             log.info("redis mingzhong le 3....");

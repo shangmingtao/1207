@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		 http://www.springframework.org/schema/context
+		 http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		 http://www.springframework.org/schema/aop
+		 http://www.springframework.org/schema/aop/spring-aop.xsd
+		 http://www.springframework.org/schema/tx
+		 http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		 ">
+
+
+	<!-- 采用注释的方式配置bean -->
+	<context:annotation-config />
+
+	<!-- 配置要扫描的包 -->
+	<context:component-scan base-package="cn.milo" />
+
+	<import resource="classpath:spring/dubbo-provider.xml" />
+
+	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+		  p:driverClass="com.mysql.jdbc.Driver"
+		  p:jdbcUrl="jdbc:mysql://118.212.149.56:3306/Milo"
+		  p:user="${username}"
+		  p:password="${password}"
+		  p:idleConnectionTestPeriod="${idleConnectionTestPeriod}"
+		  p:maxIdleTime="${maxIdleTime}"
+		  p:acquireIncrement="${acquireIncrement}"
+		  p:initialPoolSize="${initialPoolSize}"
+		  p:maxPoolSize="${maxPoolSize}"
+		  p:minPoolSize="${minPoolSize}"
+		  p:autoCommitOnClose="${autoCommitOnClose}"
+		  p:checkoutTimeout="${checkoutTimeout}"
+		  p:acquireRetryAttempts="${acquireRetryAttempts}"
+		  p:preferredTestQuery="SELECT 1"
+		  p:maxConnectionAge="3000"/>
+
+	<!-- mapper扫描 -->
+	<bean id="mapperScanneryxt" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.milo.mapper" />
+	</bean>
+
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mybatis/*.xml"/>
+	</bean>
+
+	<bean id="Timehandler" class="cn.milo.aop.TimeHandler"></bean>
+
+	<aop:config>
+		<aop:aspect id="time" ref="Timehandler">
+			<aop:pointcut id="addAllMethod" expression="execution(* cn.milo.service.*.*(..))"></aop:pointcut>
+			<aop:after method="printTime" pointcut-ref="addAllMethod"></aop:after>
+			<aop:before  method="printTime" pointcut-ref="addAllMethod"></aop:before >
+		</aop:aspect>
+	</aop:config>
+
+	<!--<bean id = "transactionDemo2" class = "cn.milo.aop.TimeHandler2" />-->
+	<aop:aspectj-autoproxy />
+
+
+	<!-- 第一种方式aop配置事务 -->
+	<!-- transaction manager, use DataSourceTransactionManager -->
+
+   <!--<bean id="txManager"-->
+       <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+       <!--<property name="dataSource" ref="dataSource" />-->
+   <!--</bean>-->
+	<!--<tx:advice id="txAdvice" transaction-manager="txManager">-->
+		<!--<tx:attributes>-->
+			<!--<tx:method name="select*" read-only="true" />-->
+			<!--<tx:method name="*" rollback-for="Exception" />-->
+		<!--</tx:attributes>-->
+	<!--</tx:advice>-->
+   <!--<aop:config>-->
+       <!--<aop:pointcut id="fooServiceMethods" expression="execution(* cn.milo.service.*.*(..))" />-->
+       <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceMethods" />-->
+   <!--</aop:config>-->
+
+	<!-- 第二种方式注解 -->
+	<bean id="appTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven proxy-target-class="false" transaction-manager="appTransactionManager" />
+
+
+	<import resource="classpath:redis/redis-context.xml" />
+
+</beans>
